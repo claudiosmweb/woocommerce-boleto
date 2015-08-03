@@ -134,6 +134,7 @@ class WC_Boleto_Gateway extends WC_Payment_Gateway {
 					'nossacaixa' => __( 'Nossa Caixa', 'woocommerce-boleto' ),
 					'real'       => __( 'Real', 'woocommerce-boleto' ),
 					'santander'  => __( 'Santander', 'woocommerce-boleto' ),
+					'sicredi'    => __( 'Sicredi', 'woocommerce-boleto'),
 					'unibanco'   => __( 'Unibanco', 'woocommerce-boleto' ),
 					'bancoob'    => __( 'Bancoob', 'woocommerce-boleto')
 				)
@@ -629,6 +630,46 @@ class WC_Boleto_Gateway extends WC_Payment_Gateway {
 					'carteira' => array(
 						'title' => __( 'Wallet code', 'woocommerce-boleto' ),
 						'type'  => 'text'
+					)
+				);
+				break;
+			case 'sicredi' :
+				$fields = array(
+					'agencia' => array(
+						'title'       => __( 'Agency', 'woocommerce-boleto' ),
+						'type'        => 'text',
+						'description' => __( 'Agency number without digit.', 'woocommerce-boleto' )
+					),
+					'conta' => array(
+						'title'       => __( 'Account', 'woocommerce-boleto' ),
+						'type'        => 'text',
+						'description' => __( 'Account number without digit.', 'woocommerce-boleto' )
+					),
+					'conta_dv' => array(
+						'title' => __( 'Account digit', 'woocommerce-boleto' ),
+						'type'  => 'text'
+					),
+					'posto' => array(
+						'title'       => __( 'Post', 'woocommerce-boleto' ),
+						'type'        => 'text',
+						'description' => __( 'The credit union agency code', 'woocommerce-boleto' )
+					),
+					'byte_idt' => array(
+						'title' => __( 'Identification byte', 'woocommerce-boleto' ),
+						'type'  => 'text',
+						'description' => __( 'The credit union identification byte', 'woocommerce-boleto' )
+					),
+					'carteira' => array(
+						'title'       => __( 'Wallet code', 'woocommerce-boleto' ),
+						'type'        => 'text',
+						'description' => __( 'Confirm this information with your manager.', 'woocommerce-boleto' ),
+						'default'     => 'A'
+					),
+					'inicio_nosso_numero' => array(
+						'title'       => __( 'Beginning of the Our Number', 'woocommerce-boleto' ),
+						'type'        => 'text',
+						'description' => __( 'The year of generation with two digits', 'woocommerce-boleto' ),
+						'default'     => date('y', time())
 					)
 				);
 				break;
