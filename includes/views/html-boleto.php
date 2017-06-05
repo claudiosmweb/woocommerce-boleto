@@ -29,6 +29,9 @@ if ( isset( $boleto_code ) ) {
 		$order = new WC_Order( $order_id );
 		$order_data = get_post_meta( $order_id, 'wc_boleto_data', true );
 
+		// Sequential Order Numbers Pro
+		$orderseq = $order->get_order_number();
+
 		// Gets current bank.
 		$settings = get_option( 'woocommerce_boleto_settings' );
 		$bank = sanitize_text_field( $settings['bank'] );
@@ -49,6 +52,7 @@ if ( isset( $boleto_code ) ) {
 			foreach ( $settings as $key => $value ) {
 				if ( in_array( $key, array( 'demonstrativo1', 'demonstrativo2', 'demonstrativo3' ) ) ) {
 					$data[ $key ] = str_replace( '[number]', '#' . $data['nosso_numero'], sanitize_text_field( $value ) );
+					$data[ $key ] = str_replace( '[numberseq]', '#' . $orderseq, sanitize_text_field( $value ) );
 				} else {
 					$data[ $key ] = sanitize_text_field( $value );
 				}
